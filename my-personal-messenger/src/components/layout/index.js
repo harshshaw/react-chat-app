@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Header from '../layout/Header/index'
 /**
 * @author
 * @function layout
@@ -8,7 +8,7 @@ import React from 'react'
 const layout = (props) => {
   return(
 <div>
-<header>Header</header> 
+<Header/>
 {props.children}
 </div>
 )
