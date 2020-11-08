@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Layout from '../../components/layout'
 import Card from '../../components/layout/UI/Card/index'
+import './style.css';
+import {signup} from '../../actions/'
+import { useDispatch } from 'react-redux';
 
 /**
 * @author
@@ -12,14 +15,26 @@ const RegisterPage = (props) => {
   const [lastname,setLastName]=useState("")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
+  const dispatch=useDispatch();
+
+  const registerUser=(e)=>{
+    e.preventDefault();
+    const user={
+      firstname,lastname,email,password
+    }
+
+    dispatch(signup(user))
+  }
+
+
   return(
     <Layout>
-      <div className='registerContainer'></div>
+      <div className='registerContainer'>
+        <h3>Sign Up!</h3>
       <Card>
-        <form>
+        <form onSubmit={registerUser}>
         <input
             name="firstname"
-            value='firstname'
             onChange={e=>setFirstName(e.target.value)}
             placeholder="firstname"
             type='text'>
@@ -27,7 +42,6 @@ const RegisterPage = (props) => {
 
             <input
             name="lastname"
-            value='lastname'
             onChange={e=>setLastName(e.target.value)}
             placeholder="lastname"
             type='text'>
@@ -35,7 +49,7 @@ const RegisterPage = (props) => {
 
             <input
             name="email"
-            value='email'
+         
             onChange={e=>setEmail(e.target.value)}
             placeholder="email"
             type='text'>
@@ -43,14 +57,15 @@ const RegisterPage = (props) => {
 
             <input
             name="password"
-            value='password'
+           
             onChange={e=>setPassword(e.target.value)}
             placeholder="password"
             type='password'>
             </input>
-
+          <button type='submit'>Sign Up</button>
         </form>
       </Card>
+      </div>
     </Layout>
    )
 
